@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Note: If you are having this issue, remove package-lock.json if you have one, remove yarn.lock if you have one, and remove node_modules.
+*Note*: If you are having the npm start fails: sh: react-scripts: command not found issue, one way to solve the problem would be to remove package-lock.json if you have one, remove yarn.lock if you have one, and remove node_modules.
 
 Then, if you use Yarn, run yarn. If after this yarn start doesn't work, upload your project to GitHub and file an issue in Yarn repository.
 
