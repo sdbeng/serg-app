@@ -33,13 +33,13 @@ const topics = [
         name: 'React Lifecycle Events',
         id: 'react-lifecycle',
         description: "React Lifecycle events allow you to tie into specific phases of a component's life cycle",
-        url: 'https://reacttraining.com/react-router/'
+        url: 'https://calendly.com/'
       },
       {
         name: 'React AHA Moments',
         id: 'react-aha',
         description: "A collection of 'Aha' moments while learning React.",
-        url: 'https://reacttraining.com/react-router/'
+        url: 'https://calendly.com/'
       }
     ]
   },
@@ -75,57 +75,65 @@ const About = () => {
   )
 }
 
-const Resource = ({match}) => {
-  const topic = topics.find(({ id }) => id === match.params.topicId)
-    .resources.find(({ id }) => id === match.params.subId)
-
+// const Resource = ({match}) => {
+//   const topic = topics.find(({ id }) => id === match.params.topicId)
+//     .resources.find(({ id }) => id === match.params.subId)
+//
+//   return (
+//     <div>
+//       <h3>{topic.name}</h3>
+//       <p>{topic.description}</p>
+//       <a href={topic.url}>More info.</a>
+//     </div>
+//   )
+// }
+const Resource = () => {
   return (
-    <div>
-      <h3>{topic.name}</h3>
-      <p>{topic.description}</p>
-      <a href={topic.url}>More info.</a>
-    </div>
+    <h3>Resource</h3>
   )
 }
 
-function Topic ({ match }) {
-  const topic = topics.find(({ id }) => id === match.params.topicId)
-
+const Topic = () => {
+  // const topic = topics.find(({ id }) => id === match.params.topicId)
   return (
     <div>
-      <h2>{topic.name}</h2>
-      <p>{topic.description}</p>
+      <h2>TOPIC</h2>
+      {/* <h2>{topic.name}</h2>
+      <p>{topic.description}</p> */}
 
-      <ul>
+      {/* <ul>
         {topic.resources.map((sub) => console.log('log match', match) || (
           <li key={sub.id}>
             <Link to={`${match.url}/${sub.id}`}>{sub.name}</Link>
           </li>
         ))}
-      </ul>
-
+      </ul> */}
       <hr />
 
-      <Route path={`${match.path}/:subId`} component={Resource} />
+      {/* <Route path={`${match.path}/:subId`} component={Resource} /> */}
     </div>
   )
 }
 const Topics = ({match}) => {
-
+// console.log('topics obj', topics);
   return (
     <div>
       <h1>Topics</h1>
       <ul>
-        {topics.map(({name, id}) => (
+        {topics.map(({name, id}) => console.log(match) || (
           <li key={id}>
-            {/* if someone decide to later change the name of topics to concepts, try this prev. console logging the match param */}
+            {/* if someone decided to later change the name of topics to concepts, try this prev. console logging the match param */}
             <Link to={`${match.url}/${id}`}>{name}</Link>
             {/* <Link to={`/topics/${id}`}>{name}</Link> */}
           </li>
         ))}
       </ul>
       <hr/>
-      <Route path={`/topics/:topicId`} component={Topic} />
+      <Route path={`/topics/:topicId`} render={({match}) => (
+        <div>
+          <h3>Hello San Francisco</h3>
+        </div>
+      )} />
     </div>
   )
 }
@@ -136,7 +144,7 @@ class App extends Component {
     return (
       <Router>
         <div style={{width: 1000, margin: '0 auto'}}>
-            <h1 className="App-title">Welcome to React</h1>
+            <h1 className="App-title">React Router v4-playground</h1>
             <ul>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/about'>About</Link></li>
@@ -144,8 +152,8 @@ class App extends Component {
             </ul>
             <hr/>
             <Route exact path='/' component={Home} />
-            <Route exact path='/about' component={About} />
-            <Route exact path='/topics' component={Topics} />
+            <Route path='/about' component={About} />
+            <Route path='/topics' component={Topics} />
         </div>
       </Router>
 
