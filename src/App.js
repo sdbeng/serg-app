@@ -75,42 +75,42 @@ const About = () => {
   )
 }
 
-// const Resource = ({match}) => {
-//   const topic = topics.find(({ id }) => id === match.params.topicId)
-//     .resources.find(({ id }) => id === match.params.subId)
-//
-//   return (
-//     <div>
-//       <h3>{topic.name}</h3>
-//       <p>{topic.description}</p>
-//       <a href={topic.url}>More info.</a>
-//     </div>
-//   )
-// }
-const Resource = () => {
-  return (
-    <h3>Resource</h3>
-  )
-}
+const Resource = ({match}) => {
+  const topic = topics.find(({ id }) => id === match.params.topicId)
+    .resources.find(({ id }) => id === match.params.subId)
 
-const Topic = () => {
-  // const topic = topics.find(({ id }) => id === match.params.topicId)
   return (
     <div>
-      <h2>TOPIC</h2>
-      {/* <h2>{topic.name}</h2>
-      <p>{topic.description}</p> */}
+      <h3>{topic.name}</h3>
+      <p>{topic.description}</p>
+      <a href={topic.url}>More info.</a>
+    </div>
+  )
+}
+// const Resource = () => {
+//   return (
+//     <h3>Resource</h3>
+//   )
+// }
 
-      {/* <ul>
+const Topic = ({match}) => {
+  const topic = topics.find(({ id }) => id === match.params.topicId)
+  return (
+    <div>
+      {/* <h2>TOPIC</h2> */}
+      <h2>{topic.name}</h2>
+      <p>{topic.description}</p>
+
+      <ul>
         {topic.resources.map((sub) => console.log('log match', match) || (
           <li key={sub.id}>
             <Link to={`${match.url}/${sub.id}`}>{sub.name}</Link>
           </li>
         ))}
-      </ul> */}
+      </ul>
       <hr />
 
-      {/* <Route path={`${match.path}/:subId`} component={Resource} /> */}
+      <Route path={`${match.path}/:subId`} component={Resource} />
     </div>
   )
 }
@@ -120,7 +120,8 @@ const Topics = ({match}) => {
     <div>
       <h1>Topics</h1>
       <ul>
-        {topics.map(({name, id}) => console.log(match) || (
+        {/* {topics.map(({name, id}) => console.log(match) || ( */}
+        {topics.map(({name, id}) => (
           <li key={id}>
             {/* if someone decided to later change the name of topics to concepts, try this prev. console logging the match param */}
             <Link to={`${match.url}/${id}`}>{name}</Link>
@@ -129,11 +130,12 @@ const Topics = ({match}) => {
         ))}
       </ul>
       <hr/>
-      <Route path={`/topics/:topicId`} render={({match}) => (
+      <Route path={`/topics/:topicId`} component={Topic} />
+      {/* <Route path={`/topics/:topicId`} render={({match}) => (
         <div>
           <h3>Hello San Francisco</h3>
         </div>
-      )} />
+      )} /> */}
     </div>
   )
 }
