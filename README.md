@@ -5,9 +5,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Then, if you use Yarn, run yarn. If after this yarn start doesn't work, upload your project to GitHub and file an issue in Yarn repository.
 
 If you use npm, run npm install. If after this npm start doesn't work, upload your project to GitHub and file an issue in npm repository.
-do:
+Then do run:
 ```
-> rm -rf npm_modules package-lock.json yarn.lock
+> rm -rf node_modules package-lock.json yarn.lock
 >npm i
 ```
 ## Table of Contents
