@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 // import logo from './logo.svg'
 // import './App.css'
+import Storepicker from './components/Storepicker'
 
 //nested routes app
 const topics = [
@@ -66,7 +67,10 @@ const topics = [
 
 const Home = () => {
   return (
-    <h1>Home</h1>
+    <React.Fragment>
+      <h1>Home</h1>
+      <Storepicker />
+    </React.Fragment>
   )
 }
 const About = () => {
@@ -75,7 +79,7 @@ const About = () => {
   )
 }
 
-const Resource = ({match}) => {
+const Resource = ({ match }) => {
   const topic = topics.find(({ id }) => id === match.params.topicId)
     .resources.find(({ id }) => id === match.params.subId)
 
@@ -93,7 +97,7 @@ const Resource = ({match}) => {
 //   )
 // }
 
-const Topic = ({match}) => {
+const Topic = ({ match }) => {
   const topic = topics.find(({ id }) => id === match.params.topicId)
   return (
     <div>
@@ -114,14 +118,14 @@ const Topic = ({match}) => {
     </div>
   )
 }
-const Topics = ({match}) => {
-// console.log('topics obj', topics);
+const Topics = ({ match }) => {
+  // console.log('topics obj', topics);
   return (
     <div>
       <h1>Topics</h1>
       <ul>
         {/* {topics.map(({name, id}) => console.log(match) || ( */}
-        {topics.map(({name, id}) => (
+        {topics.map(({ name, id }) => (
           <li key={id}>
             {/* if someone decided to later change the name of topics to concepts, try this prev. console logging the match param */}
             <Link to={`${match.url}/${id}`}>{name}</Link>
@@ -129,7 +133,7 @@ const Topics = ({match}) => {
           </li>
         ))}
       </ul>
-      <hr/>
+      <hr />
       <Route path={`/topics/:topicId`} component={Topic} />
       {/* <Route path={`/topics/:topicId`} render={({match}) => (
         <div>
@@ -145,17 +149,17 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div style={{width: 1000, margin: '0 auto'}}>
-            <h1 className="App-title">React Router v4-playground</h1>
-            <ul>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/about'>About</Link></li>
-              <li><Link to='/topics'>Topics</Link></li>
-            </ul>
-            <hr/>
-            <Route exact path='/' component={Home} />
-            <Route path='/about' component={About} />
-            <Route path='/topics' component={Topics} />
+        <div style={{ width: 1000, margin: '0 auto' }}>
+          <h1 className="App-title">React Router v4-playground</h1>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About</Link></li>
+            <li><Link to='/topics'>Topics</Link></li>
+          </ul>
+          <hr />
+          <Route exact path='/' component={Home} />
+          <Route path='/about' component={About} />
+          <Route path='/topics' component={Topics} />
         </div>
       </Router>
 
